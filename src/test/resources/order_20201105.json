@@ -1,0 +1,4 @@
+{"orderId":1,"amount":100,"currency":"USD","comment":"order pay 1"}
+{"orderId":2,"amount":200,"currency":"USD","comment":""}
+{"orderId":3,"amount":one,"currency":"USD","comment":"order pay 3"}
+{"orderId":4,"amount":"one","currency":"USD","comment":"order pay 2"}

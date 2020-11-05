@@ -1,0 +1,9 @@
+logging:
+  config: classpath:log4j2.xml
+spring:
+  main:
+    web-application-type: NONE
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
