@@ -7,13 +7,18 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import ru.syntez.orders.parser.entities.OrderFieldEnum;
 import ru.syntez.orders.parser.entities.output.OrderOutput;
-import ru.syntez.orders.parser.entities.results.ParseResultValue;
+import ru.syntez.orders.parser.entities.results.ValidatedResult;
 import ru.syntez.orders.parser.exceptions.OrderParserException;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static ru.syntez.orders.parser.utils.validator.OrderValidator.validateResultInteger;
+import static ru.syntez.orders.parser.utils.validator.OrderValidator.validateResultString;
+
 /**
  * Parser for JSON file from lines
  * {“orderId”:1,”amount”:100,”currency”:”USD”,”comment”:”оплата заказа”}
@@ -33,7 +38,7 @@ public class OrdersParserJSON extends OrdersParserBase implements IOrdersParser 
             while ((currentLine = reader.readLine()) != null) {
                 lineNumber++;
                 try {
-                    List<ParseResultValue> orderValues = parseFromLine(currentLine);
+                    List<ValidatedResult> orderValues = parseFromLine(currentLine);
                     orderOutputList.add(createOrderOutput(fileName, lineNumber, orderValues));
                 } catch (OrderParserException pe) {
                     LOG.error(String.format("Error parse file line %s", fileName));
@@ -45,17 +50,17 @@ public class OrdersParserJSON extends OrdersParserBase implements IOrdersParser 
         }
     }
 
-    private List<ParseResultValue> parseFromLine(String line) throws OrderParserException {
-        List<ParseResultValue> resultList = new ArrayList<>();
+    private List<ValidatedResult> parseFromLine(String line) throws OrderParserException {
+        List<ValidatedResult> resultList = new ArrayList<>();
         JSONParser parser = new JSONParser();
         try {
             JSONObject json = (JSONObject) parser.parse(line);
             for (OrderFieldEnum orderField : OrderFieldEnum.values()) {
                 String recordValue = json.get(orderField.getFieldCode()).toString();
                 if (orderField.getIsInteger()) {
-                    resultList.add(parseResultInteger(orderField, recordValue));
+                    resultList.add(validateResultInteger(orderField, recordValue));
                 } else {
-                    resultList.add(parseResultString(orderField, recordValue));
+                    resultList.add(validateResultString(orderField, recordValue));
                 }
             }
         } catch (ParseException e) {
