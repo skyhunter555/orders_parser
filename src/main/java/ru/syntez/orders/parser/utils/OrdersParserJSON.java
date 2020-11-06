@@ -31,26 +31,14 @@ public class OrdersParserJSON extends OrdersParserBase implements IOrdersParser 
 
     @Override
     public List<OrderOutput> parseFromFile(String fileName) throws IOException {
-        List<OrderOutput> orderOutputList = new ArrayList<>();
-        int lineNumber = 0;
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String currentLine;
-            while ((currentLine = reader.readLine()) != null) {
-                lineNumber++;
-                try {
-                    List<ValidatedResult> orderValues = parseFromLine(currentLine);
-                    orderOutputList.add(createOrderOutput(fileName, lineNumber, orderValues));
-                } catch (OrderParserException pe) {
-                    LOG.error(String.format("Error parse file line %s", fileName));
-                    orderOutputList.add(createOrderOutputWithError(fileName, lineNumber, pe.getMessage()));
-                }
-            }
-            LOG.info(String.format("File parsed %s rows.", lineNumber));
-            return orderOutputList;
-        }
+        LOG.info(String.format("Start parsing JSON file '%s'.", fileName));
+        List<OrderOutput> orders = super.parseFromFileByLines(fileName);
+        LOG.info(String.format("JSON file parsed. Total rows %s", orders.size()));
+        return orders;
     }
 
-    private List<ValidatedResult> parseFromLine(String line) throws OrderParserException {
+    @Override
+    public List<ValidatedResult> parseFromLine(String line) throws OrderParserException {
         List<ValidatedResult> resultList = new ArrayList<>();
         JSONParser parser = new JSONParser();
         try {

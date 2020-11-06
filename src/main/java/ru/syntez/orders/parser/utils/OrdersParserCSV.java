@@ -27,27 +27,14 @@ public class OrdersParserCSV extends OrdersParserBase implements IOrdersParser {
 
     @Override
     public List<OrderOutput> parseFromFile(String fileName) throws IOException {
-
-        List<OrderOutput> orderOutputList = new ArrayList<>();
-        int lineNumber = 0;
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String currentLine;
-            while ((currentLine = reader.readLine()) != null) {
-                lineNumber++;
-                try {
-                    List<ValidatedResult> orderValues = parseFromLine(currentLine);
-                    orderOutputList.add(createOrderOutput(fileName, lineNumber, orderValues));
-                } catch (OrderParserException pe) {
-                    LOG.error(String.format("Error parse file line %s", fileName));
-                    orderOutputList.add(createOrderOutputWithError(fileName, lineNumber, pe.getMessage()));
-                }
-            }
-            LOG.info(String.format("File parsed %s rows.", lineNumber));
-            return orderOutputList;
-        }
+        LOG.info(String.format("Start parsing CSV file '%s'.", fileName));
+        List<OrderOutput> orders = super.parseFromFileByLines(fileName);
+        LOG.info(String.format("CSV file parsed. Total rows %s", orders.size()));
+        return orders;
     }
 
-    private List<ValidatedResult> parseFromLine(String line) throws IOException, OrderParserException {
+    @Override
+    public List<ValidatedResult> parseFromLine(final String line) throws IOException, OrderParserException {
 
         Reader reader = new StringReader(line);
         LOG.info("Start parse line of CSV file.");
@@ -60,7 +47,7 @@ public class OrdersParserCSV extends OrdersParserBase implements IOrdersParser {
         return parseByFieldIndexes(csvRecord);
     }
 
-    private List<ValidatedResult> parseByFieldIndexes(CSVRecord csvRecord) {
+    private List<ValidatedResult> parseByFieldIndexes(final CSVRecord csvRecord) {
         List<ValidatedResult> resultList = new ArrayList<>();
         for (OrderFieldEnum orderField : OrderFieldEnum.values()) {
             String recordValue = csvRecord.get(orderField.getFieldIndex());
