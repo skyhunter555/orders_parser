@@ -3,7 +3,7 @@ package ru.syntez.orders.parser.entities.output;
 /**
  * Output order data
  * {“id”:1, ”amount”:100, ”comment”:”оплата заказа”, ”filename”:”orders.csv”, ”line”:1, ”result”:”OK” }
- * @author Savoskin Dmitry
+ * @author Skyhunter
  * @date 05.11.2020
  */
 public class OrderOutput {

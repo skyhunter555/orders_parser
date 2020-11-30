@@ -16,7 +16,7 @@ import java.util.List;
  * createOrderOutput
  * createOrderOutputWithError
  *
- * @author Savoskin Dmitry
+ * @author Skyhunter
  * @date 05.11.2020
  */
 abstract class OrdersParserBase {

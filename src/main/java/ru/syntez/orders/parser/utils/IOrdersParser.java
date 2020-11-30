@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Methods to parse some orders from file
  *
- * @author Savoskin Dmitry
+ * @author Skyhunter
  * @date 05.11.2020
  */
 public interface IOrdersParser {

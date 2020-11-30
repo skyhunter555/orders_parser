@@ -2,7 +2,7 @@ package ru.syntez.orders.parser.entities;
 /**
  * Universal schema of order file
  *
- * @author Savoskin Dmitry
+ * @author Skyhunter
  * @date 05.11.2020
  */
 public enum OrderFieldEnum {

@@ -4,7 +4,7 @@ import ru.syntez.orders.parser.entities.OrderFieldEnum;
 /**
  * ParseResultValue for order field with some message
  *
- * @author Savoskin Dmitry
+ * @author Skyhunter
  * @date 05.11.2020
  */
 public class ValidatedResult {

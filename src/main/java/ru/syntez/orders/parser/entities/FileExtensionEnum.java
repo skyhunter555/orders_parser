@@ -5,7 +5,7 @@ import ru.syntez.orders.parser.exceptions.OrderParserException;
 /**
  * File extensions
  *
- * @author Savoskin Dmitry
+ * @author Skyhunter
  * @date 05.11.2020
  */
 public enum FileExtensionEnum {

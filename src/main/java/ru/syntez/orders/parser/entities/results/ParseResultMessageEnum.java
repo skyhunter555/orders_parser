@@ -3,7 +3,7 @@ package ru.syntez.orders.parser.entities.results;
 /**
  * Parse result message
  *
- * @author Savoskin Dmitry
+ * @author Skyhunter
  * @date 05.11.2020
  */
 public enum ParseResultMessageEnum {

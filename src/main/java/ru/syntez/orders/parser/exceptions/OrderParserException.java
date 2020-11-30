@@ -2,7 +2,7 @@ package ru.syntez.orders.parser.exceptions;
 /**
  * Wrapper over RuntimeException. Includes additional options for formatting message text.
  *
- * @author Savoskin Dmitry
+ * @author Skyhunter
  * @date 05.11.2020
  */
 public class OrderParserException extends RuntimeException {

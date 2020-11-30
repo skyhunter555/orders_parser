@@ -16,7 +16,7 @@ import static java.lang.System.exit;
 /**
  * Main class for console running
  *
- * @author Savoskin Dmitry
+ * @author Skyhunter
  * @date 03.11.2020
  */
 @SpringBootApplication

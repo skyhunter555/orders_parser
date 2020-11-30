@@ -22,7 +22,7 @@ import static ru.syntez.orders.parser.utils.validator.OrderValidator.validateRes
 /**
  * Parser for JSON file from lines
  * {“orderId”:1,”amount”:100,”currency”:”USD”,”comment”:”оплата заказа”}
- * @author Savoskin Dmitry
+ * @author Skyhunter
  * @date 05.11.2020
  */
 public class OrdersParserJSON extends OrdersParserBase implements IOrdersParser {

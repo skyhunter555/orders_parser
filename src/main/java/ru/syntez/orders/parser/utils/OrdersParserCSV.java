@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Parser for CSV file from lines
  *
- * @author Savoskin Dmitry
+ * @author Skyhunter
  * @date 05.11.2020
  */
 public class OrdersParserCSV extends OrdersParserBase implements IOrdersParser {

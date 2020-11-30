@@ -8,7 +8,7 @@ import java.util.Optional;
 /**
  * Create order parser by file extensions
  *
- * @author Savoskin Dmitry
+ * @author Skyhunter
  * @date 05.11.2020
  */
 public class OrdersParserFactory {
